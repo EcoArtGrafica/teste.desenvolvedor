@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BrandRequest;
+use App\Repositories\BrandRepository;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+
+
+    private $brandRepository;
+
+    function __construct(BrandRepository $brandRepository)
+    {
+        $this->brandRepository = $brandRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -25,9 +37,9 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
-        //
+        $this->brandRepository->store($request->all());
     }
 
     /**

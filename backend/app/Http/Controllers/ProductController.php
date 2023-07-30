@@ -2,16 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Repositories\ImageRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
-class HomeApplianceController extends Controller
+class ProductController extends Controller
 {
+
+    private $productRepository;
+    private $imageRepository;
+
+
+    function __construct(ProductRepository $productRepository, ImageRepository $imageRepository)
+    {
+        $this->productRepository = $productRepository;
+        $this->imageRepository = $imageRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $home_appliances = $this->productRepository->all();
+
+        return response()->json(compact('home_appliances'));
     }
 
     /**
@@ -25,9 +41,9 @@ class HomeApplianceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $this->productRepository->store($request->all());
     }
 
     /**

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HomeApplianceRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class HomeApplianceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:200',
+            'description' => 'required',
+            'voltage' => 'required',
+            'brand_id' => 'required|int',
+            'value' => 'required',
         ];
     }
 }

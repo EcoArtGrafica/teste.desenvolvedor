@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\HomeApplianceController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('appliances', HomeApplianceController::class);
-Route::resource('brands', BrandController::class);
+Route::resource('/products', ProductController::class);
+Route::resource('/brands', BrandController::class);
 Route::post('/images/upload', [ImageController::class, 'upload']);

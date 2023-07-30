@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_appliances', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description');
             $table->string('voltage');
             $table->bigInteger('brand_id')->unsigned();
             $table->decimal('value');
-            $table->string('main_image');
+            $table->string('main_image')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_appliances');
+        Schema::dropIfExists('products');
     }
 };

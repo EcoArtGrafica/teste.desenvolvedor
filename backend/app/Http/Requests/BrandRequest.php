@@ -11,7 +11,7 @@ class BrandRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class BrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:200'
+        ];
+    }
+
+
+    /**
+     *  Filters to be applied to the input.
+     *
+     * @return array
+     */
+    public function filters()
+    {
+        return [
+            'name' => 'trim',
         ];
     }
 }
